@@ -1,0 +1,43 @@
+function syncHolidays() {
+  
+  const teamCalendarId = '<teamcalID>';                 // replace <teamcalID> with the ID of your team calendar
+  const teamCalendar = CalendarApp.getCalendarById(teamCalendarId);
+  
+  const holidayCalendarIds = [                          // replace this list with the countries you care about
+    'en.german#holiday@group.v.calendar.google.com',    //Germany
+    'en.italian#holiday@group.v.calendar.google.com',   //Italy
+    'en.polish#holiday@group.v.calendar.google.com',    //Poland
+    'en.singapore#holiday@group.v.calendar.google.com', //Singapore
+    'en.ch#holiday@group.v.calendar.google.com',        //Switzerland
+    'en.uk#holiday@group.v.calendar.google.com',        //UK
+    'en.usa#holiday@group.v.calendar.google.com',       //US
+    'en.spain#holiday@group.v.calendar.google.com'      //Spain
+  ];
+  
+  const holidayNames = [                                //same countries and order as above
+    'Germany',
+    'Italy',
+    'Poland',
+    'Singapore',
+    'Switzerland',
+    'UK',
+    'USA',
+    'Spain'
+  ];
+
+  // define time frame over which you want to add holidays
+  const today = new Date();
+  const endTime = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 365); //currently for the next 365 days
+
+  // looping through each countries calendar and adding the holiday events
+  for (var i = 0; i < holidayCalendarIds.length; i++) {
+    var holidayCalendarId = holidayCalendarIds[i];
+    const holidayCalendar = CalendarApp.getCalendarById(holidayCalendarId);
+    const holidayEvents = holidayCalendar.getEvents(today, endTime);
+    holidayEvents.forEach((holidayEvent) => {
+      // the new event to be imported. currently will look like "[USA | holiday] Thanksgiving"
+      const newEvent = teamCalendar.createEvent('[' + holidayNames[i] + ' | holiday] ' +holidayEvent.getTitle(), holidayEvent.getStartTime(), holidayEvent.getEndTime());
+      console.log(`Copied event to team calendar: ${newEvent.getTitle()}`);  
+    });
+  }  
+}
