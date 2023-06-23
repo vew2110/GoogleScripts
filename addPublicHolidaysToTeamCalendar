@@ -4,14 +4,15 @@ function syncHolidays() {
   const teamCalendar = CalendarApp.getCalendarById(teamCalendarId);
   
   const holidayCalendarIds = [                          // replace this list with the countries you care about
-    'en.german#holiday@group.v.calendar.google.com',    //Germany
-    'en.italian#holiday@group.v.calendar.google.com',   //Italy
-    'en.polish#holiday@group.v.calendar.google.com',    //Poland
-    'en.singapore#holiday@group.v.calendar.google.com', //Singapore
-    'en.ch#holiday@group.v.calendar.google.com',        //Switzerland
-    'en.uk#holiday@group.v.calendar.google.com',        //UK
-    'en.usa#holiday@group.v.calendar.google.com',       //US
-    'en.spain#holiday@group.v.calendar.google.com'      //Spain
+    'en.canadian.official#holiday@group.v.calendar.google.com',  //Canada
+    'en.german.official#holiday@group.v.calendar.google.com',    //Germany
+    'en.italian.official#holiday@group.v.calendar.google.com',   //Italy
+    'en.polish.official#holiday@group.v.calendar.google.com',    //Poland
+    'en.singapore.official#holiday@group.v.calendar.google.com', //Singapore
+    'en.ch.official#holiday@group.v.calendar.google.com',        //Switzerland
+    'en.uk.official#holiday@group.v.calendar.google.com',        //UK
+    'en.usa.official#holiday@group.v.calendar.google.com',       //US
+    'en.spain.official#holiday@group.v.calendar.google.com'      //Spain
   ];
   
   const holidayNames = [                                //same countries and order as above
