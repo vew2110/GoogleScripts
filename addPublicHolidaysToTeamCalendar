@@ -42,3 +42,21 @@ function syncHolidays() {
     });
   }  
 }
+
+
+//function to remove in case you need to 
+function bulk_remove_holidays() {
+  const teamCalendarId = '<teamcalID>';                 // replace <teamcalID> with the ID of your team calendar
+  const teamCalendar = CalendarApp.getCalendarById(teamCalendarId);
+
+  const today = new Date();
+  const endDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 10); // number of days into the future you want to delete holidays of
+  const teamEvents = teamCalendar.getEvents(today, endDate);
+
+  teamEvents.forEach((teamEvent) => {
+    if (teamEvent.getTitle().includes('| holiday]')) {
+        teamEvent.deleteEvent();
+        console.log(`Deleted event from team calendar: ${teamEvent.getTitle()}`);
+    }
+  });
+}
